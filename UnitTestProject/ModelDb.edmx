@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище LaboratoryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administartors">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar(max)" />
+          <Property Name="last_name" Type="varchar(max)" />
+          <Property Name="middle_name" Type="varchar(max)" />
+          <Property Name="id_user" Type="int" />
+        </EntityType>
+        <EntityType Name="Laborants">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar(max)" />
+          <Property Name="last_name" Type="varchar(max)" />
+          <Property Name="middle_name" Type="varchar(max)" />
+          <Property Name="id_user" Type="int" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created_at" Type="date" />
+          <Property Name="colb_upc" Type="varchar(max)" />
+          <Property Name="id_service" Type="int" />
+          <Property Name="id_laborant" Type="int" />
+          <Property Name="finish_at" Type="date" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar(max)" />
+          <Property Name="last_name" Type="varchar(max)" />
+          <Property Name="middle_name" Type="varchar(max)" />
+          <Property Name="born_date" Type="date" />
+          <Property Name="passport_series" Type="varchar(max)" />
+          <Property Name="passport_number" Type="varchar(max)" />
+          <Property Name="phone" Type="varchar(max)" />
+          <Property Name="email" Type="varchar" MaxLength="300" />
+          <Property Name="insurance_policy" Type="varchar(max)" />
+          <Property Name="id_user" Type="int" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="price" Type="float" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="300" />
+          <Property Name="password" Type="varchar" MaxLength="300" />
+          <Property Name="type" Type="varchar" MaxLength="100" />
+          <Property Name="image_path" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Laboratory.dbo.PatientsAndUsers" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="PatientsAndUsers">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="FIO" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="FIO" Type="varchar(max)" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="300" />
+          <Property Name="password" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <Association Name="FK_Laborants_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Laborants" Type="Self.Laborants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Laborants">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Laborants">
+          <End Role="Laborants" Type="Self.Laborants" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Laborants">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="id_laborant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="id_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patients_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище LaboratoryModelContainer">
+          <EntitySet Name="Administartors" EntityType="Self.Administartors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Laborants" EntityType="Self.Laborants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientsAndUsers" EntityType="Self.PatientsAndUsers" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PatientsAndUsers].[id] AS [id], 
+    [PatientsAndUsers].[FIO] AS [FIO], 
+    [PatientsAndUsers].[login] AS [login], 
+    [PatientsAndUsers].[password] AS [password]
+    FROM [dbo].[PatientsAndUsers] AS [PatientsAndUsers]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Laborants_Users" Association="Self.FK_Laborants_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Laborants" EntitySet="Laborants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Laborants" Association="Self.FK_Orders_Laborants">
+            <End Role="Laborants" EntitySet="Laborants" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Services" Association="Self.FK_Orders_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patients_Users" Association="Self.FK_Patients_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LaboratoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administartors">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="middle_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id_user" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Laborants">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="middle_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id_user" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Laborants_Users" FromRole="Laborants" ToRole="Users" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Laborants" FromRole="Laborants" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created_at" Type="DateTime" Precision="0" />
+          <Property Name="colb_upc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id_service" Type="Int32" />
+          <Property Name="id_laborant" Type="Int32" />
+          <Property Name="finish_at" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Laborants" Relationship="Self.FK_Orders_Laborants" FromRole="Orders" ToRole="Laborants" />
+          <NavigationProperty Name="Services" Relationship="Self.FK_Orders_Services" FromRole="Orders" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="middle_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="born_date" Type="DateTime" Precision="0" />
+          <Property Name="passport_series" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="passport_number" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="insurance_policy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id_user" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Patients_Users" FromRole="Patients" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Double" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Services" FromRole="Services" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="image_path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Laborants" Relationship="Self.FK_Laborants_Users" FromRole="Users" ToRole="Laborants" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK_Patients_Users" FromRole="Users" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="PatientsAndUsers">
+          <Key>
+            <PropertyRef Name="FIO" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Laborants_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Laborants" Type="Self.Laborants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Laborants">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Laborants">
+          <End Role="Laborants" Type="Self.Laborants" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Laborants">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="id_laborant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="id_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patients_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LaboratoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administartors" EntityType="Self.Administartors" />
+          <EntitySet Name="Laborants" EntityType="Self.Laborants" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Patients" EntityType="Self.Patients" />
+          <EntitySet Name="Services" EntityType="Self.Services" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="PatientsAndUsers" EntityType="Self.PatientsAndUsers" />
+          <AssociationSet Name="FK_Laborants_Users" Association="Self.FK_Laborants_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Laborants" EntitySet="Laborants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Laborants" Association="Self.FK_Orders_Laborants">
+            <End Role="Laborants" EntitySet="Laborants" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Services" Association="Self.FK_Orders_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patients_Users" Association="Self.FK_Patients_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище LaboratoryModelContainer" CdmEntityContainer="LaboratoryEntities">
+          <EntitySetMapping Name="Administartors">
+            <EntityTypeMapping TypeName="LaboratoryModel.Administartors">
+              <MappingFragment StoreEntitySet="Administartors">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Laborants">
+            <EntityTypeMapping TypeName="LaboratoryModel.Laborants">
+              <MappingFragment StoreEntitySet="Laborants">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="LaboratoryModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="colb_upc" ColumnName="colb_upc" />
+                <ScalarProperty Name="id_service" ColumnName="id_service" />
+                <ScalarProperty Name="id_laborant" ColumnName="id_laborant" />
+                <ScalarProperty Name="finish_at" ColumnName="finish_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="LaboratoryModel.Patients">
+              <MappingFragment StoreEntitySet="Patients">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="born_date" ColumnName="born_date" />
+                <ScalarProperty Name="passport_series" ColumnName="passport_series" />
+                <ScalarProperty Name="passport_number" ColumnName="passport_number" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="insurance_policy" ColumnName="insurance_policy" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="LaboratoryModel.Services">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="LaboratoryModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="image_path" ColumnName="image_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientsAndUsers">
+            <EntityTypeMapping TypeName="LaboratoryModel.PatientsAndUsers">
+              <MappingFragment StoreEntitySet="PatientsAndUsers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

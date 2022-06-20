@@ -40,7 +40,7 @@ namespace TestExam
 
                 var patient = Program.app.patient;
                 patient.Users.image_path = pathToImage;
-                Program.db.SaveChanges();
+                Program.app.db.SaveChanges();
 
                 pictureBox.Image = Image.FromFile(openFileDialog.FileName);
             }

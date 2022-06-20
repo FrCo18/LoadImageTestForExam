@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5925033b88984549aca622450d3be3ea" Name="Diagram1">
+        <EntityTypeShape EntityType="LaboratoryModel.Administartors" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoryModel.Laborants" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoryModel.Orders" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoryModel.Patients" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoryModel.Services" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoryModel.Users" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaboratoryModel.PatientsAndUsers" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="LaboratoryModel.FK_Laborants_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoryModel.FK_Orders_Laborants" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoryModel.FK_Orders_Services" ManuallyRouted="false" />
+        <AssociationConnector Association="LaboratoryModel.FK_Patients_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

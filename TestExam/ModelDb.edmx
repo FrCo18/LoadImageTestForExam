@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище LaboratoryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище LaboratoryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administartors">
           <Key>
             <PropertyRef Name="id" />
@@ -31,7 +31,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="created_at" Type="date" />
-          <Property Name="colb_upc" Type="varchar(max)" />
+          <Property Name="colb_upc" Type="varchar" MaxLength="500" />
           <Property Name="id_service" Type="int" />
           <Property Name="id_laborant" Type="int" />
           <Property Name="finish_at" Type="date" />
@@ -69,6 +69,18 @@
           <Property Name="password" Type="varchar" MaxLength="300" />
           <Property Name="type" Type="varchar" MaxLength="100" />
           <Property Name="image_path" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Laboratory.dbo.PatientsAndUsers" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="PatientsAndUsers">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="FIO" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="FIO" Type="varchar(max)" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="300" />
+          <Property Name="password" Type="varchar" MaxLength="300" />
         </EntityType>
         <Association Name="FK_Laborants_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
@@ -125,6 +137,14 @@
           <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientsAndUsers" EntityType="Self.PatientsAndUsers" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PatientsAndUsers].[id] AS [id], 
+    [PatientsAndUsers].[FIO] AS [FIO], 
+    [PatientsAndUsers].[login] AS [login], 
+    [PatientsAndUsers].[password] AS [password]
+    FROM [dbo].[PatientsAndUsers] AS [PatientsAndUsers]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Laborants_Users" Association="Self.FK_Laborants_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Laborants" EntitySet="Laborants" />
@@ -142,8 +162,7 @@
             <End Role="Patients" EntitySet="Patients" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LaboratoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -175,7 +194,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="created_at" Type="DateTime" Precision="0" />
-          <Property Name="colb_upc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="colb_upc" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="id_service" Type="Int32" />
           <Property Name="id_laborant" Type="Int32" />
           <Property Name="finish_at" Type="DateTime" Precision="0" />
@@ -291,7 +310,18 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Patients" EntitySet="Patients" />
           </AssociationSet>
+          <EntitySet Name="PatientsAndUsers" EntityType="LaboratoryModel.PatientsAndUsers" />
         </EntityContainer>
+        <EntityType Name="PatientsAndUsers">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="FIO" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="FIO" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="login" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -366,6 +396,16 @@
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="image_path" ColumnName="image_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientsAndUsers">
+            <EntityTypeMapping TypeName="LaboratoryModel.PatientsAndUsers">
+              <MappingFragment StoreEntitySet="PatientsAndUsers">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

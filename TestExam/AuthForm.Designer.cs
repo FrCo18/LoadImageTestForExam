@@ -36,9 +36,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnShowPass = new System.Windows.Forms.Button();
-            this.administartorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.administartorsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,9 +87,9 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(169, 318);
+            this.btnLogin.Location = new System.Drawing.Point(98, 302);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(75, 23);
+            this.btnLogin.Size = new System.Drawing.Size(144, 54);
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Войти";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -96,7 +97,7 @@
             // 
             // btnShowPass
             // 
-            this.btnShowPass.Location = new System.Drawing.Point(313, 189);
+            this.btnShowPass.Location = new System.Drawing.Point(341, 133);
             this.btnShowPass.Name = "btnShowPass";
             this.btnShowPass.Size = new System.Drawing.Size(85, 92);
             this.btnShowPass.TabIndex = 6;
@@ -104,9 +105,19 @@
             this.btnShowPass.UseVisualStyleBackColor = true;
             this.btnShowPass.Click += new System.EventHandler(this.btnShowPass_Click);
             // 
-            // administartorsBindingSource
+            // btnRegister
             // 
-            this.administartorsBindingSource.DataSource = typeof(TestExam.Administartors);
+            this.btnRegister.Location = new System.Drawing.Point(313, 302);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(155, 54);
+            this.btnRegister.TabIndex = 7;
+            this.btnRegister.Text = "Регистрация";
+            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataSource = typeof(TestExam.Users);
             // 
             // ordersBindingSource
             // 
@@ -116,7 +127,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 604);
+            this.ClientSize = new System.Drawing.Size(697, 508);
+            this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnShowPass);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.label3);
@@ -126,7 +138,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AuthForm";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.administartorsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -142,8 +154,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnShowPass;
-        private System.Windows.Forms.BindingSource administartorsBindingSource;
         private System.Windows.Forms.BindingSource ordersBindingSource;
+        private System.Windows.Forms.BindingSource usersBindingSource;
+        private System.Windows.Forms.Button btnRegister;
     }
 }
 

@@ -1,6 +1,6 @@
 ﻿namespace TestExam.Models
 {
-    class AppData
+    public class AppData
     {
         public Patients patient = null;
 
@@ -8,8 +8,11 @@
 
         public const string userFiles = @"..\..\Recourses\Users\";
 
-        public string getUserFilesPath() { 
-        
+        public LaboratoryEntities db = new LaboratoryEntities();
+
+        public string getUserFilesPath()
+        {
+
             return userFiles;
         }
     }

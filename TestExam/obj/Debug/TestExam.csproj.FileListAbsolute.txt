@@ -17,3 +17,11 @@ E:\Колледж\Подготовка к выпускному экзамену\
 E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\obj\Debug\TestExam.AuthForm.resources
 E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\obj\Debug\TestExam.PatientMenuForm.resources
 E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\obj\Debug\TestExam.PatientProfileForm.resources
+E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\bin\Debug\Newtonsoft.Json.dll
+E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\bin\Debug\Newtonsoft.Json.xml
+E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\obj\Debug\TestExam.GraficForm.resources
+E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\obj\Debug\TestExam.DataGridForm.resources
+E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\obj\Debug\TestExam.RegisterForm.resources
+E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\obj\Debug\TestExam.GridReportSortForm.resources
+E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\obj\Debug\TestExam.OrdersForm.resources

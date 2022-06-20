@@ -39,11 +39,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,14 +68,26 @@
     <Compile Include="AuthForm.Designer.cs">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataGridForm.Designer.cs">
+      <DependentUpon>DataGridForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GridReportSortForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GridReportSortForm.Designer.cs">
+      <DependentUpon>GridReportSortForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Laborants.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="PatientMenuForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PatientMenuForm.Designer.cs">
-      <DependentUpon>PatientMenuForm.cs</DependentUpon>
+    <Compile Include="LaboratoryDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LaboratoryDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ModelDb.Context.cs">
       <AutoGen>True</AutoGen>
@@ -88,10 +104,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelDb.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\AppData.cs" />
     <Compile Include="Orders.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="OrdersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdersForm.Designer.cs">
+      <DependentUpon>OrdersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatientMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientMenuForm.Designer.cs">
+      <DependentUpon>PatientMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AppData.cs" />
     <Compile Include="PatientProfileForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,8 +129,23 @@
     <Compile Include="Patients.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="PatientsAndUsers.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterForm.Designer.cs">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraficForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GraficForm.Designer.cs">
+      <DependentUpon>GraficForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Services.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
@@ -111,6 +154,18 @@
     </Compile>
     <EmbeddedResource Include="AuthForm.resx">
       <DependentUpon>AuthForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataGridForm.resx">
+      <DependentUpon>DataGridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraficForm.resx">
+      <DependentUpon>GraficForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GridReportSortForm.resx">
+      <DependentUpon>GridReportSortForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdersForm.resx">
+      <DependentUpon>OrdersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PatientMenuForm.resx">
       <DependentUpon>PatientMenuForm.cs</DependentUpon>
@@ -128,28 +183,28 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RegisterForm.resx">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="ModelDb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelDb.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="LaboratoryDataSet.xsc">
+      <DependentUpon>LaboratoryDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="LaboratoryDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LaboratoryDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="LaboratoryDataSet.xss">
+      <DependentUpon>LaboratoryDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ModelDb.edmx.diagram">
       <DependentUpon>ModelDb.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Administartors.datasource" />
-    <None Include="Properties\DataSources\AuthForm.datasource" />
-    <None Include="Properties\DataSources\Laborants.datasource" />
-    <None Include="Properties\DataSources\LaboratoryEntities.datasource" />
-    <None Include="Properties\DataSources\Orders.datasource" />
-    <None Include="Properties\DataSources\PatientMenuForm.datasource" />
-    <None Include="Properties\DataSources\PatientProfileForm.datasource" />
-    <None Include="Properties\DataSources\Patients.datasource" />
-    <None Include="Properties\DataSources\Program.datasource" />
-    <None Include="Properties\DataSources\Services.datasource" />
-    <None Include="Properties\DataSources\TestExam.Models.AppData.datasource" />
-    <None Include="Properties\DataSources\TestExam.Properties.Resources.datasource" />
-    <None Include="Properties\DataSources\TestExam.Properties.Settings.datasource" />
-    <None Include="Properties\DataSources\Users.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

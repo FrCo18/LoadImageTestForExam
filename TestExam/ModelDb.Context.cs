@@ -31,5 +31,6 @@ namespace TestExam
         public virtual DbSet<Patients> Patients { get; set; }
         public virtual DbSet<Services> Services { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<PatientsAndUsers> PatientsAndUsers { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace TestExam
@@ -15,7 +17,9 @@ namespace TestExam
 
         private void btnLogin_Click(object sender, System.EventArgs e)
         {
-            var users = Program.db.Users.Where(
+            string email = txtLogin.Text;
+
+            var users = Program.app.db.Users.Where(
                 u => u.login == txtLogin.Text && u.password == txtPassword.Text
                 ).ToList();
 
@@ -25,7 +29,7 @@ namespace TestExam
                 Users user = users[0];
                 if (user.type == "patient")
                 {
-                    var patient = Program.db.Patients.Where(
+                    var patient = Program.app.db.Patients.Where(
                         p => p.id_user == user.id
                         ).ToList();
 
@@ -33,7 +37,7 @@ namespace TestExam
                     PatientMenuForm patientForm = new PatientMenuForm();
                     patientForm.Show();
                 }
-                else if(user.type == "laborant")
+                else if (user.type == "laborant")
                 {
 
                 }
@@ -43,11 +47,20 @@ namespace TestExam
                 MessageBox.Show("Не верны имя пользователя или пароль!", "Ошибка!",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            //PatientMenuForm patientForm = new PatientMenuForm();
+            //patientForm.Show();
         }
 
         private void btnShowPass_Click(object sender, System.EventArgs e)
         {
             txtPassword.UseSystemPasswordChar = txtPassword.UseSystemPasswordChar ? false : true;
+        }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            RegisterForm registerForm = new RegisterForm();
+            registerForm.ShowDialog();
         }
     }
 }

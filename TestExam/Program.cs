@@ -10,7 +10,6 @@ namespace TestExam
     internal static class Program
     {
         public static AppData app = new AppData();
-        public static LaboratoryEntities db = new LaboratoryEntities();
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>

@@ -56,7 +56,7 @@
             // 
             // openFileDialog
             // 
-            this.openFileDialog.FileName = "openFileDialog";
+            this.openFileDialog.Filter = ".jpg|.png";
             // 
             // PatientProfileForm
             // 
