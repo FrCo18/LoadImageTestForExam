@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace TestExam
@@ -10,8 +9,8 @@ namespace TestExam
         public AuthForm()
         {
             InitializeComponent();
-            txtLogin.Text = "nmably1";
-            txtPassword.Text = "ukM0e6";
+            txtLogin.Text = "1";
+            txtPassword.Text = "1";
             //txtPassword.Text = "dadadawdkawda";
         }
 
@@ -22,7 +21,6 @@ namespace TestExam
             var users = Program.app.db.Users.Where(
                 u => u.login == txtLogin.Text && u.password == txtPassword.Text
                 ).ToList();
-
 
             if (users.Count() != 0)
             {

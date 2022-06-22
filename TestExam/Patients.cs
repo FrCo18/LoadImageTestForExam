@@ -11,7 +11,9 @@ namespace TestExam
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Drawing;
+
     public partial class Patients
     {
         public int id { get; set; }
@@ -27,5 +29,39 @@ namespace TestExam
         public Nullable<int> id_user { get; set; }
     
         public virtual Users Users { get; set; }
+
+        public string login
+        {
+            get
+            {
+                if (id == 0)
+                {
+                    return "";
+                }
+                return this.Users.login;
+            }
+            set
+            {
+                login = value;
+            }
+
+        }
+
+        [NotMapped]
+        public Image Photo
+        {
+            get
+            {
+                if (id == 0 || Users.image_path == null)
+                {
+                    return null;
+                }
+                return Image.FromFile(Users.image_path);
+            }
+            set
+            {
+                Photo = value;
+            }
+        }
     }
 }

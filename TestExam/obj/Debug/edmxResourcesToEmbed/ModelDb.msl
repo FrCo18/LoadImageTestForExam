@@ -72,15 +72,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PatientsAndUsers">
-      <EntityTypeMapping TypeName="LaboratoryModel.PatientsAndUsers">
-        <MappingFragment StoreEntitySet="PatientsAndUsers">
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="login" ColumnName="login" />
-          <ScalarProperty Name="FIO" ColumnName="FIO" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

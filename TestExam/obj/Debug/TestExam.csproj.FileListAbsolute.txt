@@ -25,3 +25,4 @@ E:\Колледж\Подготовка к выпускному экзамену\
 E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\obj\Debug\TestExam.RegisterForm.resources
 E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\obj\Debug\TestExam.GridReportSortForm.resources
 E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\obj\Debug\TestExam.OrdersForm.resources
+E:\Колледж\Подготовка к выпускному экзамену\TestExam\TestExam\obj\Debug\TestExam.LvImagesForm.resources

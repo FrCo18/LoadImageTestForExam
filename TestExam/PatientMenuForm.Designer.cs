@@ -33,6 +33,8 @@
             this.btnDataGrid = new System.Windows.Forms.Button();
             this.btnGridReport = new System.Windows.Forms.Button();
             this.btnOrders = new System.Windows.Forms.Button();
+            this.btnLvImages = new System.Windows.Forms.Button();
+            this.btnBlyat = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProfile
@@ -85,11 +87,33 @@
             this.btnOrders.UseVisualStyleBackColor = true;
             this.btnOrders.Click += new System.EventHandler(this.btnOrders_Click);
             // 
+            // btnLvImages
+            // 
+            this.btnLvImages.Location = new System.Drawing.Point(513, 128);
+            this.btnLvImages.Name = "btnLvImages";
+            this.btnLvImages.Size = new System.Drawing.Size(175, 58);
+            this.btnLvImages.TabIndex = 5;
+            this.btnLvImages.Text = "ЛистВью с картинками";
+            this.btnLvImages.UseVisualStyleBackColor = true;
+            this.btnLvImages.Click += new System.EventHandler(this.btnLvImages_Click);
+            // 
+            // btnBlyat
+            // 
+            this.btnBlyat.Location = new System.Drawing.Point(513, 217);
+            this.btnBlyat.Name = "btnBlyat";
+            this.btnBlyat.Size = new System.Drawing.Size(175, 58);
+            this.btnBlyat.TabIndex = 6;
+            this.btnBlyat.Text = "Блять";
+            this.btnBlyat.UseVisualStyleBackColor = true;
+            this.btnBlyat.Click += new System.EventHandler(this.btnBlyat_Click);
+            // 
             // PatientMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnBlyat);
+            this.Controls.Add(this.btnLvImages);
             this.Controls.Add(this.btnOrders);
             this.Controls.Add(this.btnGridReport);
             this.Controls.Add(this.btnDataGrid);
@@ -108,5 +132,7 @@
         private System.Windows.Forms.Button btnDataGrid;
         private System.Windows.Forms.Button btnGridReport;
         private System.Windows.Forms.Button btnOrders;
+        private System.Windows.Forms.Button btnLvImages;
+        private System.Windows.Forms.Button btnBlyat;
     }
 }

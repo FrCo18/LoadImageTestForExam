@@ -144,16 +144,5 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="Patients" EntitySet="Patients" />
     </AssociationSet>
-    <EntitySet Name="PatientsAndUsers" EntityType="LaboratoryModel.PatientsAndUsers" />
   </EntityContainer>
-  <EntityType Name="PatientsAndUsers">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="FIO" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="FIO" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="login" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-    <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-  </EntityType>
 </Schema>

@@ -39,5 +39,17 @@ namespace TestExam
             OrdersForm ordersForm = new OrdersForm();
             ordersForm.Show();
         }
+
+        private void btnLvImages_Click(object sender, EventArgs e)
+        {
+            LvImagesForm frm = new LvImagesForm();
+            frm.Show();
+        }
+
+        private void btnBlyat_Click(object sender, EventArgs e)
+        {
+            GridReportSortForm frm = new GridReportSortForm();
+            frm.Show();
+        }
     }
 }

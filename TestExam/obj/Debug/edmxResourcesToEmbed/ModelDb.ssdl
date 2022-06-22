@@ -65,18 +65,6 @@
     <Property Name="type" Type="varchar" MaxLength="100" />
     <Property Name="image_path" Type="varchar" MaxLength="500" />
   </EntityType>
-  <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "Laboratory.dbo.PatientsAndUsers" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-  <EntityType Name="PatientsAndUsers">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="FIO" />
-    </Key>
-    <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="FIO" Type="varchar(max)" Nullable="false" />
-    <Property Name="login" Type="varchar" MaxLength="300" />
-    <Property Name="password" Type="varchar" MaxLength="300" />
-  </EntityType>
   <Association Name="FK_Laborants_Users">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Laborants" Type="Self.Laborants" Multiplicity="*" />
@@ -132,14 +120,6 @@
     <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="PatientsAndUsers" EntityType="Self.PatientsAndUsers" store:Type="Views" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [PatientsAndUsers].[id] AS [id], 
-    [PatientsAndUsers].[FIO] AS [FIO], 
-    [PatientsAndUsers].[login] AS [login], 
-    [PatientsAndUsers].[password] AS [password]
-    FROM [dbo].[PatientsAndUsers] AS [PatientsAndUsers]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK_Laborants_Users" Association="Self.FK_Laborants_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="Laborants" EntitySet="Laborants" />
